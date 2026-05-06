@@ -10,12 +10,13 @@ PROJECT_ROOT = Path(__file__).parents[2]
 
 
 def _get_parser(source: str):
+    from budgeting.parsers.amex import AmexParser
     from budgeting.parsers.pnc import PNCParser
 
     registry = {
         "pnc": PNCParser,
         "fidelity": None,
-        "amex": None,
+        "amex": AmexParser,
         "discover": None,
         "capital_one": None,
     }
