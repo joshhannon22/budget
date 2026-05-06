@@ -26,3 +26,5 @@ htmlcov/
 
 *.pyc
 .DS_Store
+
+tests/fixtures/
