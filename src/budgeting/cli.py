@@ -27,7 +27,21 @@ def ingest(
     source: str = typer.Option(..., help=f"Source name: {', '.join(KNOWN_SOURCES)}"),
 ):
     """Ingest a CSV export into the pipeline."""
-    typer.echo("Not yet implemented")
+    from budgeting.ingest import run_ingest
+
+    if source not in KNOWN_SOURCES:
+        typer.echo(f"Error: unknown source {source!r}. Choose from: {', '.join(KNOWN_SOURCES)}", err=True)
+        raise typer.Exit(1)
+
+    try:
+        result = run_ingest(csv_path, source)
+        typer.echo(
+            f"{result['source'].upper()}: read {result['rows_read']} rows, "
+            f"inserted {result['rows_inserted']}, skipped {result['rows_skipped']}"
+        )
+    except NotImplementedError as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(1)
 
 
 @app.command("list-sources")
