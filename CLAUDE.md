@@ -46,7 +46,7 @@ No external services. No cloud. No API keys. CSV in, SQLite out.
 ## Project structure
 
 ```
-~/dev/budgeting/
+~/dev/budget/
 ├── pyproject.toml
 ├── README.md
 ├── docs/
